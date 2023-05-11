@@ -10,4 +10,4 @@ echo refspec=$REFSPEC
 echo commit=$COMMIT
 
 MID=`git diff-tree $REFSPEC | cut -d' ' -f2,4,5,6 | git hash-object -w --stdin`
-git notes --ref=approvals append -C $MID $COMMIT
+git-notes -S 75EA307AF1E41CB5 --ref=approvals append -C $MID $COMMIT
