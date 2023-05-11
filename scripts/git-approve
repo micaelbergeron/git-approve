@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# $1: refspec of the changes to be approved
+# $2: ref of the commit
+
+REFSPEC=${1:-HEAD}
+COMMIT=${2:-HEAD}
+
+echo refspec=$REFSPEC
+echo commit=$COMMIT
+
+MID=`git diff-tree $REFSPEC | cut -d' ' -f2,4,5,6 | git hash-object -w --stdin`
+git notes --ref=approvals append -C $MID $COMMIT
